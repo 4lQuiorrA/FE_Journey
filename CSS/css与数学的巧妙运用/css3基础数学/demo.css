@@ -1,0 +1,21 @@
+img{
+    width:400px;
+    height:400px;
+    transform: rotate(-45deg) scale(1.42);
+
+}
+/* .container:hover{
+    transform:rotate(-45deg) scale(1);
+} */
+.container{
+    width:400px;
+    height:400px;
+    background:red;
+    transform: rotate(45deg);
+    overflow: hidden;
+}
+body{
+
+    padding-left:160px;
+    padding-top:160px;
+}

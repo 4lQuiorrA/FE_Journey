@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box div {
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            border: 3px solid #000;
+            text-align: center;
+            line-height: 160px;
+            font-size: 130px;
+            background: rgba(255, 200, 100, .8);
+        }
+
+        #box {
+            animation-name: animation;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 3s;
+            margin: 80px;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transform-origin: 80px 80px 0;
+        }
+
+        #box .one {
+            /* 前面 */
+            transform: translateZ(80px);
+        }
+        #box .two {
+            /* 下面 */
+            transform: rotateX(-90deg) translateZ(80px);
+        }
+        
+
+        #box .three {
+            /* 上面 */
+            transform: rotateY(90deg) rotateX(90deg) translateZ(80px);
+        }
+
+        #box .four {
+            /* 后面 */
+            transform: rotateY(180deg) rotateZ(90deg) translateZ(80px);
+        }
+
+      
+
+        #box .five {
+            /* 左边 */
+            transform: rotateY(-90deg) rotateZ(90deg) translateZ(80px);
+        }
+        #box .six {
+            /* 右边 */
+            transform: rotateY(90deg) translateZ(80px) ;
+        }
+        @-webkit-keyframes animation{
+            16%{
+                transform: rotateY(-90deg)
+            }
+            32%{
+                transform: rotateY(-90deg) rotateZ(135deg);
+            }
+            
+            50%{
+                transform: rotateY(225deg) rotateZ(135deg);
+            }
+            60%{
+                transform: rotateY(135deg) rotateX(135deg);
+            }
+            84%{
+                transform: rotateX(135deg);
+            }
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="view" style="width:160px;height:160px;margin:80px auto 0 auto;">
+        <div id="box">
+
+            <div class="one">A</div>
+            <div class="two">B</div>
+            <div class="three">C</div>
+            <div class="four">D</div>
+            <div class="five">E</div>
+            <div class="six">F</div>
+        </div>
+    </div>
+</body>
+
+</html>
