@@ -1,16 +1,17 @@
 ###　promise A+ 规范
 
-
+![脑图](https://github.com/4lQuiorrA/FE_Journey/blob/master/image/js/promiseA%2B.png)
 
 **术语**
     - 解决（fulfill）:指一个promise成功时进行的一系列操作，如状态的改变、回调和执行，虽然规范中用`fulfill`来表示解决,但在后世promise实现多以`resolve`来指代。
-    - 拒绝（reject）:指一个promise失败时进行的一系列操作。
-    - 终值（eventual value）：所谓终值，指的是promise被解决时传递给解决回调的值，由于promise有一次性的特征，因此当这个值被传递时标志着promise等待态，故称之为终值，有时候也会简称为值
-    - 拒因（reason）:也就是拒绝原因，指promise被拒绝后回调的值。
-    - Promise promise是一个拥有then方法的对象和函数，其行为符合本规范
-    - thenable 是一个定义了then方法的对象和函数，文中译作“拥有`then`方法”
-    - 值 指任何javascript的合法值（包括`undefined`,`thenable`,`promise`）
-    - 异常（exception）是使用`throw`语句抛出的一个值
+        - 拒绝（reject）:指一个promise失败时进行的一系列操作。
+        - 终值（eventual value）：所谓终值，指的是promise被解决时传递给解决回调的值，由于promise有一次性的特征，因此当这个值被传递时标志着promise等待态，故称之为终值，有时候也会简称为值
+        - 拒因（reason）:也就是拒绝原因，指promise被拒绝后回调的值。
+        - Promise promise是一个拥有then方法的对象和函数，其行为符合本规范
+        - thenable 是一个定义了then方法的对象和函数，文中译作“拥有`then`方法”
+        - 值 指任何javascript的合法值（包括`undefined`,`thenable`,`promise`）
+        - 异常（exception）是使用`throw`语句抛出的一个值
+
     - 
 ---
 ### 要求
@@ -184,4 +185,22 @@ Promise.prototype.then = function(onFulfilled){
 但是等我们执行的时候会发现，等如果再我们执行`then`去注册回调函数之前，就已经执行了`resolve`的时候，那`then`函数就无法注册到回调函数了（比如 promise内部回调是一个同步操作），那显然是不符合`promise A+规范`：规定promise回调必须是一个异步执行的，来保证一个可靠的执行顺序。
 
 ```
+// 我们改造一下
+function resolve(value){
+    setTimeout(()=>{
+        this.callbacks.forEach(function(callback){
+            callback(value);
+        })
+    },0);
+}
 ```
+> 通过setTimeout机制，将`resolve`中执行回调的逻辑放到JS任务队列末尾，以保证在`resolve`,`then`方法的回调函数已经注册完成
+
+**但是这有个问题，如果当then链式已经把必要的回调函数注册完之后，已经调用了`resolve`,那之后在调用`then`仍然能注册函数，这显然是有问题的**
+
+
+**加入状态**
+- fulfilled
+- pending
+- rejected
+> promiseA+规范明确规定了，`pending`可以转化成`fulfilled`或者`rejected`.
