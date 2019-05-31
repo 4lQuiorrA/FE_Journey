@@ -4,8 +4,8 @@
 
 #### js基础知识
 
-- **[作用域与作用域链]()**
-- **[原型与原型链]()**
+- **[作用域与作用域链](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_normal/%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE.md)**
+- **[原型与原型链](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_normal/javascript%E5%9F%BA%E7%A1%80-%E5%8E%9F%E5%9E%8B%E5%8E%9F%E5%9E%8B%E9%93%BE.md)**
 - **[this]()**
 - **[闭包]()**
 
