@@ -7,9 +7,9 @@
 #### 函数式编程进阶理论
 
 - **[高阶函数](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_advanced/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0.md)**
-- **[尾调用优化PTC]()**
+- **[尾调用优化PTC](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_advanced/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96.md)**
 - **[闭包](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_normal/javascript%E5%9F%BA%E7%A1%80-%E9%97%AD%E5%8C%85.md)**
-- **[容器-Funtor]()**
-- **[错误处理、Either、AP]()**
-- **[IO]()**
-- **[Monad]()**
+- **[容器、Funtor（Maybe函子，Either函子）]()**
+- **[AP-函子]()**
+- **[IO函子]()**
+- **[Monad函子]()**
