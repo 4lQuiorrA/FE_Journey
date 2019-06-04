@@ -209,5 +209,28 @@ getAge({name:"stark"}).map(age=>"Age is"+age); // Age is Error
 Left 可以让调用链中的任意一环的错误立刻返回到调用链尾部。不用在像在ES6中，在of内部去判断他当前是否存在，然后进行相关的操作，可以直接在第一层错误的时候就捕捉到错误信息。再也不用去一层一层的try..catch
 
 
+### AP函子
+
+如果函子里面的value是一个函数，而不是一个单纯的值了，那应该怎么办呢，用我们之前用的Maybe函子和Either函子显然无法解决；
+这个时候就要引入能解决的函子-AP函子
+
+```
+class AP extends Functor{
+
+    ap(F){
+        return AP.of(this.val(F.val));
+    }
+
+}
+AP.of = function(f){
+    return new AP(f)
+}
+AP.of(addTwo).ap(Functor.of(2));
+var addTwo = function(x){
+    return x+1;
+}
+```
+实际上就是利用AP函子的父类，也就是Functor首先存储第二次传输的要计算的内容，同时要变形的函数传入AP函子中，然后利用AP函子的将传进来的函数执行，并返回执行后的结果。
+
 
 
