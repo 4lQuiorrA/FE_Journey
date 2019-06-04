@@ -200,10 +200,10 @@ Right.prototype.map = function(f){
 ```
 // 我们在看一个例子：基于Left错误处理的例子
 
-var getAge = use=>user.age?Right.of(user.age):Right.of("Error");
+var getAge = use=>user.age?Right.of(use.age):Left.of("Error");
 
 getAge({name:'stark',age:21}).map(age=>"Age is"+age); // 当age存在的时候
-getAge({name:"stark"}).map(age=>"Age is"+age); // Age is Error
+getAge({name:"stark"}).map(age=>"Age is"+age).map(age=>age++); // Age is Error
 
 ```
 Left 可以让调用链中的任意一环的错误立刻返回到调用链尾部。不用在像在ES6中，在of内部去判断他当前是否存在，然后进行相关的操作，可以直接在第一层错误的时候就捕捉到错误信息。再也不用去一层一层的try..catch
