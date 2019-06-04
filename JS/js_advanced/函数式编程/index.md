@@ -9,7 +9,7 @@
 - **[高阶函数](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_advanced/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0.md)**
 - **[尾调用优化PTC](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_advanced/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96.md)**
 - **[闭包](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_normal/javascript%E5%9F%BA%E7%A1%80-%E9%97%AD%E5%8C%85.md)**
-- **[容器、Funtor（Maybe函子，Either函子）](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_advanced/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%AE%B9%E5%99%A8-Functor.md)**
-- **[AP-函子]()**
-- **[IO函子]()**
-- **[Monad函子]()**
+- **[容器、Funtor（Maybe函子，Either函子，AP函子）](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_advanced/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%AE%B9%E5%99%A8-Functor.md)**
+
+- **[IO函子与monad函子](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_advanced/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/IO%E5%87%BD%E5%AD%90%E4%B8%8Emonad%E5%87%BD%E5%AD%90.md)**
+
