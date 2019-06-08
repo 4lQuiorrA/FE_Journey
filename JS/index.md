@@ -24,4 +24,5 @@
 #### javascript专题系列
 - **[jQuery源码解析](https://github.com/4lQuiorrA/FE_Journey/blob/master/JS/js_advanced/jQuery%E5%8E%9F%E7%90%86/jquery%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF.md)**
 - **[javascript专题系列-函数式编程](https://github.com/4lQuiorrA/FE_Journey/tree/master/JS/js_advanced/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/index.md)**
+-**[常用的函数式编程库]()**
 
