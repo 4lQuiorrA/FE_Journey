@@ -238,3 +238,205 @@ distance代表为了是否在引用，如果没有，就没有在引用了
 除了这种方法,还有一种方法叫做快照，查看方式比较简单。前面已经展示了。
 
 总结：eval不对词法作用域上的任何变量解绑，eval无法解析自己里面字符串的内容。eval的作用范围是：自己当前处于的作用域。所以这个题目的解决方法是：将`eval`改成`window.eval`为什么可以这样做。加上了`window`，可以让eval认为当前是要在window的作用域范围内执行。在window范围内是没有`a`的
+
+**扩展一下**
+```
+var a = "京程"
+function init(){
+    var a = "一灯";
+    var test = new Function("console.log(a)");
+    test();
+}
+```
+
+不去掉引号打印`京程`,去掉引号打印`一灯`，为什么呢？`""`的作用会默认将里面的内容进行全局作用域的词法绑定，如果没有引号也就没有绑定全局的功能了。
+
+```
+var obj = {
+    apple:"京程"
+}
+with(obj){
+    yideng = "苹果"
+}
+console.log(obj.yideng);
+```
+`with`会在`obj`查询当前对象上有没有这个对象，如果有则赋值，没有则将当前内容绑定到全局上。
+特别注意：`GC`一旦遇到`with`会放弃所有变量的回收。
+
+### T5
+
+```
+class BWM extends Car{
+    constructor(color){
+        super(color);
+    }
+    yideng(){
+        console.log(111);
+    }
+}
+BWM.prototype.yideng = function(){
+    console.log(2222)
+}
+const bwm = new BWM("yellow");
+bwm.yideng(); //2222
+```
+为什么输出`2222`？因为ES6就是js的语法糖，在`BWM`的原型上有一个`yideng`的方法，再次定义之后，就被重写成输出`2222`
+
+```
+在BWN类中增加
+super.ss ="3"
+
+bwm.ss // 3
+```
+为什么呢？`super`如果直接使用的话，是指向当前使用的类的，如果当做方法来使用的话是指向父类的
+
+### T6
+
+```
+Object.prototype.a = 'a';
+Function.prototype.a = "a1";
+function Person(){}
+var yideng = new Person();
+console.log(Person.a); // 在Function原型上的a
+console.log(yideng.a); // 在Object原型上的a
+console.log(1..a);
+console.log(1.a);
+console.log()
+```
+
+`1..a`是什么哇？`1.a`又是什么
+来看一个例子
+```
+typeof 1.
+```
+这里打印`number`,为什么，js有规定这种写法是有效的，就跟写浮点型是一个道理了，因为后面没有接小数位,所以就等于`1`。所以`1..a`等于`number.a`等于`"a"`
+但是`1.a`没有这种写法，无法将`.`分配给谁。正确的写法应该是`(1).a`
+
+
+### T7
+元编程：js中没有的方法，然后通过编程让js中出现这种方法。简单来讲就是控制编程的编程。
+
+举个例子
+```
+var yideng = ?
+if(yideng==1&&yideng===2&&yideng===3){
+    console.log('匹配')
+}
+```
+在我们的正常思维上，这种方法不可能通过一个表达式来实现这个情况，但是通过元编程就能实现
+
+```
+var yideng = {
+    [Symbol.toPrimitive]:((i)=>()=>++i)(0)
+}
+
+```
+在`Symbol.toPrimitive`属性(作为值)的帮助下,一个对象可以被转换成原始值.
+当操作原始值的时候,他就会执行对应的方法.
+
+**proxy代理**
+
+**Reflect反射**
+
+```
+function Tree(){
+	return new Proxy({},handler);
+}
+
+ var handler = {
+	get(target,key,receiver){
+	if(!(key in target)){
+	target[key] = Tree();
+		}
+	return  Reflect.get(target,key,receiver)
+	}
+
+}
+
+let tree = new Tree();
+
+tree.yideng.person = "yideng"
+console.log(tree)
+```
+
+**npmjs也提供了一种reflect-metadata**
+就是通过反射,直接给没有这个方法的对象,定义这种方法
+
+/*
+*使用举栗
+*/
+```
+Reflect.defineMetadata(metadataKey, metadataValue, C.prototype, "method");
+let metadataValue = Reflect.getMetadata(metadataKey, obj, "method");
+
+```
+
+### T8
+
+```
+let a = 0;
+let yideng = async ()=>{
+    a = a+ await  10;
+    console.log(a);
+}
+yideng();
+console.log(++a);
+```
+**打印的:1  10**
+首先`async`是一个异步函数,所以`console.log(++a)`肯定会优于整个`yideng`函数先执行完;打印出第一个`1`
+然后我们看一下`yideng`这个函数`a= a+await 10` 这句话要分为2端来执行,首先是`a+`部分,这一段代码是同步代码所以一开始`a=0`先执行 .
+`async`在执行的时候会冻结执行时的变量(也就是说,在`async`函数在遇到`await`异步的时候,无法继续执行,会把内部被执行完的同步的部分给冻结住,让内部的变量不会被改变).
+
+### T9
+```
+$("#test").click(function(argument){
+    console.log(1);
+})
+setTimeout(function(){
+console.log(2);
+},0)
+while(true){
+    console.log(Math.random());
+}
+```
+javascript分为同步执行栈和异步执行队列,
+`while(true)`的执行将整个进程给阻塞了,所以,后面的异步执行队列就无法执行了.
+- 解决方法:使用多线程(webwork或者使用concurrent.thread.js)
+
+首先是最常见的`webwork demo`
+html
+```
+<div id="test">11</div>
+
+ $('#test').click(function() {
+        alert(1);
+    });
+    var worker = new Worker("task.js");
+    worker.onmessage = function(event){
+        console.log(event.data)
+    }
+```
+**task.js**
+
+```
+postMessage(Math.random());// 主线程通过postMessage向线程发送数据
+```
+
+- 接下来是一种简单的方法:使用concurrent.thread.js
+只需要引入这个js
+然后增加`type="text/x-script.multithreaded-js"`
+
+```
+<script src="./Concurrent.Thread.js"></script>
+<script type="text/x-script.multithreaded-js">
+$("#test").click(function(argument){
+    console.log(1);
+})
+setTimeout(function(){
+console.log(2);
+},0)
+while(true){
+    console.log(Math.random());
+}
+</script>
+```
