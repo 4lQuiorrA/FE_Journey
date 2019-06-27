@@ -88,3 +88,5 @@
 
 ==1个div最次要顶3个元素==
 
+#### html适应各种不同的分辨率
+meta里面的属性 viewport scale 根据   1/window.devicePixelRatio 算出当前设备的分辨率s
