@@ -1,0 +1,26 @@
+{
+  "name": "first_zengwm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "ydcli": "./bin/yd"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@darkobits/lolcatjs": "^3.1.3",
+    "commander": "^2.20.0",
+    "inquirer": "^6.4.1",
+    "json2ts": "0.0.7",
+    "ora": "^3.4.0",
+    "shelljs": "^0.8.3",
+    "spinner": "^0.3.4",
+    "user-home": "^2.0.0"
+  }
+}

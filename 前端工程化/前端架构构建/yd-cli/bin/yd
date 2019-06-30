@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var Printer = require('@darkobits/lolcatjs');
+const chalk = require('chalk');
+const interfacedata = require('./index').interfacedata;
+var inquirer = require('inquirer');
+const json2ts = require("json2ts");
+const userhome = require("user-home");
+const shelljs =require("shelljs");
+const ora = require('ora');
+const input = [
+    ' ˚ ˚★* 。 • ˚ ˚ ˛ ˚ ˛ •  ',
+    '•。★。*˚★ 。* 。 ',
+    '° 。 ° ˛˚˛ * _Π_____*。*˚  ',
+    '˚ ˛ •˛•˚ */______/~＼。˚ ˚ ˛ ',
+    '˚ ˛ •˛• ˚ ｜ 田田 ｜門｜ ˚    '
+].join('\n');
+const bindHandler = {
+    init(params) {
+        inquirer
+  .prompt([
+   {
+       type:"text",
+       message:"1⃣️ 请输入文件夹的名称",
+       name:"dirname"
+   }
+  ])
+  .then(answers => {
+      console.log(answers);
+    shelljs.cd(`${userhome}/Desktop/`);
+    const spinner = ora("👧 downloading.....");
+    spinner.start();
+    shelljs.mkdir(`${answers.dirname}`);
+    let jsonContent = JSON.stringify(interfacedata);
+    let result = json2ts.convert(jsonContent);
+    console.log(result);
+  });
+        
+    }
+}
+program.version(Printer.default.fromString(input), '-v,--version')
+program
+    .option('-p, --peppers', 'Add peppers')
+    .usage("<cmd> [options]")
+    .arguments("<cmd> [env]")
+    .action((cmd, otherParams) => {
+        const handler = bindHandler[cmd];
+        if (!handler) {
+            console.error(chalk.blue(`当前功能：${cmd}暂未提供😢`));
+            process.exit(1);
+        } else {
+            handler(otherParams);
+        }
+    })
+    .parse(process.argv);
