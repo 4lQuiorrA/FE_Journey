@@ -24,3 +24,7 @@ class HelloRedux extends React.Component{
 ```
 
 ### JSX DOM树更新的算法：DOM Diff
+![dom diff](https://github.com/4lQuiorrA/FE_Journey/blob/master/image/react/domdiff.png)
+DOM Diff是react非常重要的算法之一
+1. 首先开始，判断两次渲染内容是否相同，如果相同，结束；（该步执行的时候是，当`state`发生了变化，该流程就会执行）
+2. 如果不相同，就会判断当前这个这个节点是否是自定义节点（自定义节点就是，我们通过render创建出来的节点）
