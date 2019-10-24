@@ -91,4 +91,4 @@ console.log(bar.getName())
 3. 接着继续扫描到getName方法时，发现该函数内部还引用test1,于是JavaScript引擎又将test1添加到`closure(foo)`对象中就包含了`myName`和`test1`两个变量了。
 4. 由于`test2`并没有被内部函数引用，所以test2依然保存在调用栈
 
-![调用栈](https://github.com/4lQuiorrA/FE_Journey/blob/master/image/http/cssomshuhecheng.png)
+![调用栈](https://github.com/4lQuiorrA/FE_Journey/blob/master/image/http/jsneicun.png)
